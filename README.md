@@ -1,2 +1,2 @@
-# AutoEditor
- Exploration into an auto-editor for LN translations
+## AutoEditor
+Exploration into an auto-editor for LN translations
