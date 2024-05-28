@@ -1,23 +1,29 @@
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
-# Load your credentials from the JSON file
+## Load credentials from the JSON file
 SCOPES = ['https://www.googleapis.com/auth/documents']
 creds = service_account.Credentials.from_service_account_file('credentials.json', scopes=SCOPES)
 
-# Create the service object
+## Create the service object
 service = build('docs', 'v1', credentials=creds)
 
-# The ID of the document to update
-DOCUMENT_ID = '1yi1G0m2Zxf-mJ8tkfY74_vMDYtZp3E96WkeIfRU_yA0'
+## The ID of the document to update
+DOCUMENT_ID = '1BYRyHOcTuCiPj0Jrdf8_3kO7kU6YnYgD0al-06xPVqM'
 
-# Get the document
-document = service.documents().get(documentId=DOCUMENT_ID).execute()
+try:
+    ## Get the document
+    document = service.documents().get(documentId=DOCUMENT_ID).execute()
+
+except Exception as e:
+
+    DOCUMENT_ID = input(f"Document retrieved failed due to {e}. \n\nPlease enter the document ID: ") 
+    document = service.documents().get(documentId=DOCUMENT_ID).execute()
 
 requests = []
 paragraphs = []
 
-# Iterate over the elements in the document to find paragraphs and their end indices
+## Iterate over the elements in the document to find paragraphs and their end indices
 for element in document['body']['content']:
     if 'paragraph' in element:
         # Get the text from the paragraph
@@ -29,7 +35,7 @@ for element in document['body']['content']:
         # Store the paragraph text and its end index
         paragraphs.append((end_index, text))
 
-# Insert the paragraphs in reverse order to avoid shifting issues
+## Insert the paragraphs in reverse order to avoid shifting issues
 for end_index, text in reversed(paragraphs):
     requests.append({
         'insertText': {
@@ -40,7 +46,7 @@ for end_index, text in reversed(paragraphs):
         }
     })
 
-# Send the request to the Google Docs API
+## Send the request to the Google Docs API
 result = service.documents().batchUpdate(documentId=DOCUMENT_ID, body={'requests': requests}).execute()
 
 print(result)
