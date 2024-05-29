@@ -5,14 +5,14 @@ def text_duplication(document):
 
     ## Iterate over the elements in the document to find paragraphs and their end indices
     for element in document['body']['content']:
-        if 'paragraph' in element:
-            # Get the text from the paragraph
+        if('paragraph' in element):
+            ## Get the text from the paragraph
             text = ''.join([run['textRun']['content'] for run in element['paragraph']['elements'] if 'textRun' in run])
             
-            # Get the end index of the paragraph
+            ## Get the end index of the paragraph
             end_index = element['endIndex'] - 1
             
-            # Store the paragraph text and its end index
+            ## Store the paragraph text and its end index
             paragraphs.append((end_index, text))
 
     ## Insert the paragraphs in reverse order to avoid shifting issues

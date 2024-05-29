@@ -4,6 +4,7 @@ from googleapiclient.discovery import build
 
 ## custom modules
 from possible_approaches.text_duplication import text_duplication
+from possible_approaches.page_duplication import page_duplication
 
 ## Load credentials from the JSON file
 SCOPES = ['https://www.googleapis.com/auth/documents']
@@ -24,10 +25,9 @@ except Exception as e:
     DOCUMENT_ID = input(f"Document retrieved failed due to {e}. \n\nPlease enter the document ID: ") 
     document = service.documents().get(documentId=DOCUMENT_ID).execute()
 
-
-    requests = text_duplication(document)
-
-
+## Get the requests to duplicate the text
+requests = text_duplication(document)
+##requests = page_duplication(document)
 
 ## Send the request to the Google Docs API
 result = service.documents().batchUpdate(documentId=DOCUMENT_ID, body={'requests': requests}).execute()
