@@ -1,5 +1,6 @@
 ## custom modules
 from modules.text_splitter import generate_sentence_chunks
+from modules.json_util import find_name_gender
 
 with open('sample_text/short.txt', 'r', encoding='utf-8') as f:
     text = f.read()
@@ -11,3 +12,7 @@ chunks = generate_sentence_chunks(text, 1000)
 for chunk in chunks:
     print(chunk)
     print("-----")
+
+gender = find_name_gender("Ayanokōji")
+
+print(gender)
