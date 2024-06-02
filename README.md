@@ -1,5 +1,8 @@
 ## AutoEditor
 Exploration into an auto-editor for LN translations
 
-note to self:
-- need to add service account to google docs file via credential.json email
+## Plans
+- Goal: Automate the following steps:
+    1. tense correction (narration into simple past tense)
+    2. format calls and texting (italize)
+    3. pronoun correction (have the gender chart )
