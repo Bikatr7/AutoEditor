@@ -167,3 +167,6 @@ openai.txt
 
 ## tests directory
 tests/
+
+## outputs
+sample_text/short_corrected.txt

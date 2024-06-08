@@ -17,7 +17,7 @@ def generate_sentence_chunks(input_string, split_index):
         else:
             end_index = len(input_string)
         
-        result.append(input_string[current_index:end_index].strip())
+        result.append(input_string[current_index:end_index])
         current_index = end_index
     
     return result

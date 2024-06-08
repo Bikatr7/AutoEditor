@@ -22,7 +22,7 @@ class GPTConnector:
         GPTConnector.async_client = AsyncOpenAI(api_key=api_key)
 
     @staticmethod
-    async def make_request(model:str, prompt:str) -> str:
+    async def make_request(model:str, instructions:str, prompt:str) -> str:
 
         """
 
@@ -42,6 +42,10 @@ class GPTConnector:
             messages=[
                 {
                     "role": "system",
+                    "content": instructions
+                },
+                {
+                    "role": "user",
                     "content": prompt
                 }
             ]

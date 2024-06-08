@@ -4,6 +4,9 @@ Exploration into an auto-editor for LN translations
 Goal is to be used with Kudasai.
 
 ## Plans
+- Known issues:
+  1. Gpt could fuck with the text way too much, we need to somehow make sure we only give it the text to edit (not stuff like toc's etc)
+  
 - Goal: Automate the following steps:
     1. tense correction (narration into simple past tense)
     2. format calls and texting (italize)
